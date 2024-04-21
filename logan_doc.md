@@ -1,5 +1,18 @@
 ### How to make changes
 Go to our github respository and fork the repository.
+* Click [here](https://github.com/Bmfioresi/stage-managers-book)
+
+* In the top-right corner of the page, click Fork.
+
+* Under "Owner," select the dropdown menu and click an owner for the forked repository.
+
+* By default, forks are named the same as their upstream repositories, but you can name it whatever you'd like.
+
+* Optional:
+  * in the "Description" field, type a description of your fork.
+  * select Copy the DEFAULT branch only.
+
+* Click Create fork.
 
 #### After installing Node.js and npm
 Most of our files are split into two main folders: client and server. Client holds the frontend react.js files and server holds the backend node.js files. To make changes, you can simply edit any of the files as you see fit, or create entirely new ones.
