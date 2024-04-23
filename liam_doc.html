@@ -1,0 +1,29 @@
+<h1>Automated Testing</h1>
+<p>We have created a series of automated test cases which can be run directly from the website. This file can be seen at <b>/client/src/pages/unit-tests.js</b>. Currently, there are <b>7</b> automated test cases, testing a variety of different portions of the project.</p>
+<p>To run the test cases, you should start the app and naigate to <b>localhost:3000/unit-tests</b>. Unfortunately, we currently do not have a way for these unit tests to run if the app itself cannot run. There are two ways to run these test cases:</p>
+<ol>
+    <li>Test One: click on the "Test" button next ton one test case to run only this test case</li>
+    <li>Test All: click on the "Test All" button at the top of the screen to run all test cases. This will run all test cases simultaneously</li>
+</ol>
+<p>When you begin to run a test case, you should see a loading icon next to the test case. When the test case has completed, this loading icon will be replaced by either a checkmark (indicating the test passed) or an x (indicating that the test did not pass). If a test did not pass, more details will be printed to the console.</p>
+<p>Test cases access a database seperate from our production database. Thus, you can run each test case as many times as you'd like with no impact on production data. The script which is used to load the test database and which contains the specifications for the test database can be found at <b>/server/test-db-functions.js</b></p>
+
+<h1>Style Guide</h1>
+<p>When modifying this code, please adhere to the following style guides:</p>
+<ol>
+    <li>All frontend code should be stored the client subdirectory. All backend code should be stored in the server directory. Each contains their own <b>package.json</b> and <b>package-lock.json</b> files. Any packages which need to be installed must be listed in these files. A package should only be added to both <b>package.json</b> files only if it is required for both frontend and backend code.</li>
+    <li>Server environment variables are located in <b>server/.env</b>. In addition to parameters and credentials, paths should be specified as environment variables for cleaner code. There may be locations throughout this code where base URLs are hardcoded; this is not ideal behavior.</li>
+    <li>All console.log() statements created during testing should be removed from code or commented out before being pushed into the main branch of the project.</li>
+    <li>lowerCamelCase should be used for variable names throughout our code.</li>
+    <li>Filenames should consist of one or more words, written entirely in lowercase, and seperated by dashes. They should follow the form <b>server.js</b> or <b>mongo-helpers.js</b>.</li>
+    <li>When a code block requires braces, the opening brace should appear in line with the if statement, function declaration, or other start of the block. The end brace should appear at the same indentation level as the start of the block.</li>
+    <li>A seperate file should be created for helper functions if any of the following are true:</li> 
+        <ol>
+            <li>They are thematically different from the context in which they are called.</li>
+            <li>The same function is needed in two or more files.</li>
+            <li>The set of helper functions includes four or more functions.</li>
+            <li>The set of helper functions is longer than 50 lines of code.</li>
+        </ol>
+    <li>Error messages should reveal exactly what happened, unless this reveals information whih poses a securitty concern.</li>
+    <li>Unless otherwise specified, follow standard JavaScript naming conventions. These can be seen <a href="https://github.com/standard/standard">here</a>.</a></li>
+</ol>

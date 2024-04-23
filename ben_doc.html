@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+    <h2>How to Install</h2>
+    <h3>Software Needed</h3>
+        <ul>
+                <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">
+            <li>Node.js</li>
+            <li>Node Package Manager (npm)</li></a>
+            <li>A modern IDE (We used <a href="https://code.visualstudio.com/">Visual Studio Code</a>)</li>
+            <li>A working terminal (powershell, cygwin, unix, etc)</li>
+            <li>(Optional) Github Desktop</li>
+        </ul>
+    <h3>Local Deployment</h3>
+        <h4>Cloning the repository</h4>
+            <p>
+                To clone the git repository, open a terminal and run the command <code>git clone https://github.com/Bmfioresi/stage-managers-book.git</code>.
+                This will download our project, which can be found <a href="https://github.com/Bmfioresi/stage-managers-book">here</a>.
+            </p>
+        <h4>Environment Setup</h4>
+            <p>
+                For the sake of security, certain sensitive info and protected global variables are not included in the repository, and will need to be added manually.
+                In the <code>/server</code> directory, create a file called <code>.env</code> with the following contents, replacing the terms in brackets with your info.
+            </p>
+            <code>
+                &nbsp;MONGODB_USERNAME=[your MongoDB username]<br>
+                &nbsp;MONGODB_PASSWORD=[your MongoDB password]<br>
+                &nbsp;MAX_ATTEMPTS=[N]<br>
+                &nbsp;LOCKOUT_TIME=[N]<br>
+            </code>
+            <p>
+                Without this file, the web app will not be able to access the database, and will not function properly.
+            </p>
+            
+        <h4>Server</h4>
+            <p>
+                The server, located in the <code>/server</code> directory, is a Node.js application built with <a href="https://www.npmjs.com/package/express">Express.js</a>.
+            </p>
+            <p>
+                To install the dependencies, navigate to the <code>/server</code> directory and run the command <code>npm install</code> in the console.
+                This command installs the dependencies needed for the server to run properly.
+                The dependencies are detailed in the <code>package.json</code> file.
+                This command will generate a folder called <code>node_modules</code>, which contains the dependencies' files.
+                If there are any issues with the installation of dependencies, see the FAQs for assistance.1
+            </p>
+            <p>
+                To start the server, run the command <code>npm run dev</code>.
+                This will start the server on <code>localhost:8000</code> and run it in the background.
+            </p>
+        <h4>Client</h4>
+            <p>
+                The client, located in the <code>/client</code> directory, is a Node.js application built with <a href="https://www.npmjs.com/package/react">React.js</a>
+            </p>
+            <p>
+                Similarly to the server, you will need to run <code>npm install</code> in the <code>/server</code> directory.
+                This will install the dependencies specific to the client in its respective <code>node_modules</code> folder.
+            </p>
+            <p>
+                To start the client, run the command <code>npm start</code> in the <code>/client</code> directory.
+                This will start the client on <code>localhost:3000</code> and open it in your default browser.
+            </p>
+    <h3>Remote Deployment</h3>
+        <h4>Docker</h4>
+            <p>
+                Our project is currently hosted in a <a href="https://www.docker.com/">docker</a> container at <a href="http://cs495-spring2024-13.ua.edu/">http://cs495-spring2024-13.ua.edu/</a>
+            </p>
+    <!-- <h3>Sources?</h3> -->
+    <h3>External Resources</h3>
+        <ul>
+            <li><a href="https://www.mongodb.com/">MongoDB</a> and <a href="https://www.mongodb.com/atlas/database">MongoDB Atlas</a></li>
+            <p>
+                MongoDB is available for free up to 512MB of storage.
+                If more storage is required, there are <a href="https://www.mongodb.com/pricing">premium plans</a> available with higher limits.
+            </p>
+        </ul>
+
+
+    </body>
+</html>

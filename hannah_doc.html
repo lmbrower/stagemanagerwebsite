@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Documentation</title>
+<style>
+  .faq-question {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+  }
+  .faq-question:hover {
+    background-color: #e0e0e0;
+  }
+  .faq-answer {
+    display: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+  }
+  .faq-question.active + .faq-answer {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<h1>How to Install Software</h1>
+
+<h3>Clone Repository</h3>
+<p>In Visual Studio Code, open a terminal and use the following command:</p>
+<code>git clone https://github.com/Bmfioresi/stage-managers-book.git</code>
+
+<h3>Install Node.js and Node Package Manager (npm)</h3>
+<p>Follow the instructions <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">here</a> to install Node.js and npm.</p>
+
+<h3>Install the Dependencies</h3>
+<p>Inside both the client and server directories, run the command <code>npm install</code> to install the respective dependencies outlined in each <code>package.json</code>. This will generate a folder called <code>node_modules</code>, which is excluded from the git repository because its size is unncessarily large and annoying to download/upload with git.<br><br>
+In case of dependency errors, try the command <code>npm install --save --legacy-peer-deps</code>; this makes the installation less restrictive.</p>
+
+
+<h1>How to Use Each Completed Feature</h1>
+<p>This is how we use it</p>
+
+
+<h1>How to Modify/Extend Software</h1>
+
+<h3>How Can Someone Make Changes</h3>
+
+<h4>Google Sign-In/OAuth 2.0 Incorporation</h4>
+<p>To effectively incorporate Google Sign-In and OAuth 2.0 in our application, it is crucial to start by setting up a Google Cloud project, enabling essential APIs such as Google Calendar API and Gmail API, and configuring OAuth consent screens to inform users about their data access. This setup includes obtaining credentials like the Client ID and Client Secret from the Google Cloud Console and ensuring the redirect URIs are correctly configured for handling OAuth callbacks in our Node.js backend. The Google Sign-In button is integrated using the Google Identity Services library within our React components, managing authentication responses to extract and handle access tokens securely. These tokens are essential for interacting with Google services, emphasizing the importance of appropriately managing token scopes and handling token expiration. A significant issue we had with implementing this was handling the Cross-Origin Opener Policy (COOP) errors. Addressing these errors is crucial; typically, these are mitigated by setting correct COOP headers in our Node.js server responses to prevent typical cross-origin issues. However, we were not able to squash this issue. <br><br>
+For advanced functionality, such as modifying Google Calendar or sending automated emails via Gmail, developers should use the access token with Google APIs, facilitated by secure API call handling in our Node.js backend. Developers must also implement best practices for the safe storage and transmission of tokens to protect user information and prevent unauthorized access. Maintaining a detailed changelog of OAuth setup modifications and staying updated with the latest Google API documentation and OAuth 2.0 standards may assist in troubleshooting and future updates.
+</p>
+
+
+<h4>Forgot Password Functionality</h4>
+<p>The forgot password feature in our application intends to allow users to reset their passwords securely. We have developed a page for forgotten passwords on the front end using React. This page collects the user’s email address and sends it to our backend through an API call. In the backend commented out, we handle this request by generating a secure, temporary link that allows the user to reset their password. This link intends to be sent to the user’s email address using the Gmail account associated with this project.<br><br>
+For email functionality, we utilize Node.js, which has the nodemailer library configured to send emails via Gmail. However, the email was not sent successfully. Future developers may need to check several vital areas to mitigate this: first, ensure that the correct Gmail API settings are enabled in the Google Cloud Console and that the OAuth credentials are correctly set up. Verifying that the Gmail account has “less secure apps” access enabled is essential. Additionally, ensure that the SMTP configuration in nodemailer is correct, including the host, port, and authentication details. <br><br>
+If problems persist, developers should consult the Gmail API documentation and check the Node.js logs for any error messages that could indicate what may be going wrong. Possible issues could include network problems, incorrect API scopes, or Google blocking sign-ins from new devices or locations it deems suspicious. 
+</p>
+
+
+<h4>How to Reduce Potential Vendor Lock-In</h4>
+<p>Reducing dependency on MongoDB Atlas and avoiding vendor lock-in involves considering local data management solutions and understanding the implications of database standardization: </p>
+<ul>
+	<li><b>Understanding Database Standards:</b> NoSQL databases, like MongoDB, do not adhere to a unified query 	standard, which complicates the development of a vendor-agnostic platform. MongoDB utilizes a document-	oriented approach.
+	</li>
+    <li><b>Exploring Abstraction Layers:</b> Although libraries and frameworks provide abstraction for basic CRUD operations across different databases, they might not fully cover all the specific features of each database type. This can limit their effectiveness in production, especially for complex queries and operations. </li>
+    <li><b>Local MongoDB Setup:</b> As a practical workaround, consider periodically downloading your project data from MongoDB Atlas and storing it locally on Docker. This approach reduces reliance on Atlas and ensures that you have a backup in case of changes in service terms or costs. You can export data from MongoDB in BSON format and use it to set up a local MongoDB instance. Ensure your Docker environment is configured to handle this data securely and efficiently.
+</li>
+    <li><b>Seeking Further Guidance:</b> Continue seeking advice and feedback from instructors or experienced developers. Their insights could provide valuable shortcuts or alternatives you might have yet to consider. </li>
+</ul>
+
+<h3>Compiler....</h3>
+
+<h3>Backlog and Bug Lists</h3>
+
+<h3>Style Expectations</h3>
+
+<h3>How to Run Automated Testing</h3>
+
+<h3>Location of Test Cases</h3>
+
+<h1>Frequently Asked Questions</h1>
+
+<div class="faq-item">
+	<div class="faq-question">How do I create an account?</div>
+    <div class="faq-answer">
+    	<p>To create an account, simply click on the "Don't have an account? Sign-up" link on the sign-in page below the "Sign-in" button. This will redirect you to the account creation page.
+        <br><br> You will need to provide your full name, email address, and a password. Ensure that the password meets our specified criteria and is entered twice for confirmation.
+        <br><br> Your password must meet certain criteria to ensure security. It includes a minimum of eight characters in length, a mix of uppercase and lowercase letters, and at least one number and special characters. This criteria is outlined on the account creation page.</p>
+    </div>
+</div>
+
+<div class="faq-item">
+	<div class="faq-question">How do I create a new hub for my production?</div>
+    <div class="faq-answer">
+    	<p>Once logged in, navigate to the side panel and select “Create New Hub.” Enter the required information about the production, such as name and description. After creating the hub, you can invite cast and crew members by sending the access code to their emails, allowing them to join and participate in the fun!</p>
+    </div>
+</div>
+   
+<div class="faq-item">
+	<div class="faq-question">Are there any restrictions on uploading scripts and images to a hub?</div>
+    <div class="faq-answer">
+    	<p>Yes, files must be in supported formats (e.g., PDF for scripts, JPEG or PNG for images) and should not exceed the size limit of 25MB per file. Make sure your files are correctly formatted and named before uploading. If you encounter errors during upload, check your internet connection, file format, and file size and try again.</p>
+    </div>
+</div>
+
+<div class="faq-item">
+	<div class="faq-question">How can I update my user profile?</div>
+    <div class="faq-answer">
+    	<p>After logging in, you can update your profile information by navigating to the page. Scroll to the bottom and click the “Edit Profile” button. You can change details such as your contact information, bio, and profile picture. Make sure to save changes before exiting the page.</p>
+    </div>
+</div>
+
+<script>
+  var faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach(function(question) {
+    question.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
