@@ -1,9 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-    </head>
+        <meta charset="UTF-8">
+        <title>Documentation</title>
+        <style>
+          .faq-question {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+          }
+          .faq-question:hover {
+            background-color: #e0e0e0;
+          }
+          .faq-answer {
+            display: none;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+          }
+          .faq-question.active + .faq-answer {
+            display: block;
+          }
+        </style>
+        </head>
     <body>
+        <!-- BEN SECTION -->
     <h2>How to Install</h2>
     <h3>Software Needed</h3>
         <ul>
@@ -77,6 +103,78 @@
             </p>
         </ul>
 
+        <!-- LIAM SECTION -->
 
+        <h1>Automated Testing</h1>
+<p>We have created a series of automated test cases which can be run directly from the website. This file can be seen at <b>/client/src/pages/unit-tests.js</b>. Currently, there are <b>7</b> automated test cases, testing a variety of different portions of the project.</p>
+<p>To run the test cases, you should start the app and naigate to <b>localhost:3000/unit-tests</b>. Unfortunately, we currently do not have a way for these unit tests to run if the app itself cannot run. There are two ways to run these test cases:</p>
+<ol>
+    <li>Test One: click on the "Test" button next ton one test case to run only this test case</li>
+    <li>Test All: click on the "Test All" button at the top of the screen to run all test cases. This will run all test cases simultaneously</li>
+</ol>
+<p>When you begin to run a test case, you should see a loading icon next to the test case. When the test case has completed, this loading icon will be replaced by either a checkmark (indicating the test passed) or an x (indicating that the test did not pass). If a test did not pass, more details will be printed to the console.</p>
+<p>Test cases access a database seperate from our production database. Thus, you can run each test case as many times as you'd like with no impact on production data. The script which is used to load the test database and which contains the specifications for the test database can be found at <b>/server/test-db-functions.js</b></p>
+
+<h1>Style Guide</h1>
+<p>When modifying this code, please adhere to the following style guides:</p>
+<ol>
+    <li>All frontend code should be stored the client subdirectory. All backend code should be stored in the server directory. Each contains their own <b>package.json</b> and <b>package-lock.json</b> files. Any packages which need to be installed must be listed in these files. A package should only be added to both <b>package.json</b> files only if it is required for both frontend and backend code.</li>
+    <li>Server environment variables are located in <b>server/.env</b>. In addition to parameters and credentials, paths should be specified as environment variables for cleaner code. There may be locations throughout this code where base URLs are hardcoded; this is not ideal behavior.</li>
+    <li>All console.log() statements created during testing should be removed from code or commented out before being pushed into the main branch of the project.</li>
+    <li>lowerCamelCase should be used for variable names throughout our code.</li>
+    <li>Filenames should consist of one or more words, written entirely in lowercase, and seperated by dashes. They should follow the form <b>server.js</b> or <b>mongo-helpers.js</b>.</li>
+    <li>When a code block requires braces, the opening brace should appear in line with the if statement, function declaration, or other start of the block. The end brace should appear at the same indentation level as the start of the block.</li>
+    <li>A seperate file should be created for helper functions if any of the following are true:</li> 
+        <ol>
+            <li>They are thematically different from the context in which they are called.</li>
+            <li>The same function is needed in two or more files.</li>
+            <li>The set of helper functions includes four or more functions.</li>
+            <li>The set of helper functions is longer than 50 lines of code.</li>
+        </ol>
+    <li>Error messages should reveal exactly what happened, unless this reveals information whih poses a securitty concern.</li>
+    <li>Unless otherwise specified, follow standard JavaScript naming conventions. These can be seen <a href="https://github.com/standard/standard">here</a>.</a></li>
+</ol>
+
+        <!-- HANNAH SECTION -->
+        <h1>Frequently Asked Questions</h1>
+
+<div class="faq-item">
+	<div class="faq-question">How do I create an account?</div>
+    <div class="faq-answer">
+    	<p>To create an account, simply click on the "Don't have an account? Sign-up" link on the sign-in page below the "Sign-in" button. This will redirect you to the account creation page.
+        <br><br> You will need to provide your full name, email address, and a password. Ensure that the password meets our specified criteria and is entered twice for confirmation.
+        <br><br> Your password must meet certain criteria to ensure security. It includes a minimum of eight characters in length, a mix of uppercase and lowercase letters, and at least one number and special characters. This criteria is outlined on the account creation page.</p>
+    </div>
+</div>
+
+<div class="faq-item">
+	<div class="faq-question">How do I create a new hub for my production?</div>
+    <div class="faq-answer">
+    	<p>Once logged in, navigate to the side panel and select “Create New Hub.” Enter the required information about the production, such as name and description. After creating the hub, you can invite cast and crew members by sending the access code to their emails, allowing them to join and participate in the fun!</p>
+    </div>
+</div>
+   
+<div class="faq-item">
+	<div class="faq-question">Are there any restrictions on uploading scripts and images to a hub?</div>
+    <div class="faq-answer">
+    	<p>Yes, files must be in supported formats (e.g., PDF for scripts, JPEG or PNG for images) and should not exceed the size limit of 25MB per file. Make sure your files are correctly formatted and named before uploading. If you encounter errors during upload, check your internet connection, file format, and file size and try again.</p>
+    </div>
+</div>
+
+<div class="faq-item">
+	<div class="faq-question">How can I update my user profile?</div>
+    <div class="faq-answer">
+    	<p>After logging in, you can update your profile information by navigating to the page. Scroll to the bottom and click the “Edit Profile” button. You can change details such as your contact information, bio, and profile picture. Make sure to save changes before exiting the page.</p>
+    </div>
+</div>
+
+<script>
+  var faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach(function(question) {
+    question.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  });
+</script>
     </body>
 </html>
