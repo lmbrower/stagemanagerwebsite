@@ -31,8 +31,10 @@ Our project backlog is located [here](https://docs.npmjs.com/downloading-and-ins
 
 #### Bug list
 Major bugs include:
-* When you log in, the sidebar does not automatically refresh, which forces the user ot refresh the page to join a hub
+* When you log in, the sidebar does not automatically refresh, which forces the user to refresh the page to join a hub and to view the hubs they are a member of.
+* The script viewer only properly displays on Edge, and displays a downloadable file on other browsers.
 
 #### Other potential issues
 You will want to refactor to a local mongodb database rather than relying on Atlas.
 Styling will need to be refactored to be responsive using Bootstrap.
+HIDs and UIDs must be integers; some of our code uses 'Number()' in certain locations because we were originally using strings. May cause unexpected results.
