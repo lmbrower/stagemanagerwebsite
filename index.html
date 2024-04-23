@@ -59,6 +59,28 @@
             background-color: #333;
             color: #fff;
         }
+        .faq-question {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+          }
+          .faq-question:hover {
+            background-color: #e0e0e0;
+          }
+          .faq-answer {
+            display: none;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+          }
+          .faq-question.active + .faq-answer {
+            display: block;
+          }
     </style>
 </head>
 <body>
@@ -97,8 +119,308 @@
         <div class="links">
             <a href="bios.html">Team Bios</a>
             <a href="https://github.com/Bmfioresi/stage-managers-book">View Our Progress</a>
-            <a href="presentations/StageManagersBook-Sprint1Slides.pdf" download>Download Sprint 1 Presentation</a>
+            <a href="files/StageManagersBook-Sprint3Slides.pdf" download>Download Sprint 3 Presentation</a>
         </div>
     </div>
+    <div class="content">
+
+        <!-- BEN SECTION -->
+
+        <h2>How to Install</h2>
+            <h3>Software Needed</h3>
+                <ul>
+                    <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">
+                    <li>Node.js</li>
+                    <li>Node Package Manager (npm)</li></a>
+                    <li>A modern IDE (We used <a href="https://code.visualstudio.com/">Visual Studio Code</a>)</li>
+                    <li>A working terminal (powershell, cygwin, unix, etc)</li>
+                    <li>(Optional) Github Desktop</li>
+                </ul>
+            <h3>Local Deployment</h3>
+                <h4>Cloning the repository</h4>
+                    <p>
+                        To clone the git repository, open a terminal and run the command <code>git clone https://github.com/Bmfioresi/stage-managers-book.git</code>.
+                        This will download our project, which can be found <a href="https://github.com/Bmfioresi/stage-managers-book">here</a>.
+                    </p>
+                <h4>Environment Setup</h4>
+                    <p>
+                        For the sake of security, certain sensitive info and protected global variables are not included in the repository, and will need to be added manually.
+                        In the <code>/server</code> directory, create a file called <code>.env</code> with the following contents, replacing the terms in brackets with your info.
+                    </p>
+                    <code>
+                        &nbsp;MONGODB_USERNAME=[your MongoDB username]<br>
+                        &nbsp;MONGODB_PASSWORD=[your MongoDB password]<br>
+                        &nbsp;MAX_ATTEMPTS=[N]<br>
+                        &nbsp;LOCKOUT_TIME=[N]<br>
+                    </code>
+                    <p>
+                        Without this file, the web app will not be able to access the database, and will not function properly.
+                    </p>
+            
+                <h4>Server</h4>
+                    <p>
+                        The server, located in the <code>/server</code> directory, is a Node.js application built with <a href="https://www.npmjs.com/package/express">Express.js</a>.
+                    </p>
+                    <p>
+                        To install the dependencies, navigate to the <code>/server</code> directory and run the command <code>npm install</code> in the console.
+                        This command installs the dependencies needed for the server to run properly.
+                        The dependencies are detailed in the <code>package.json</code> file.
+                        This command will generate a folder called <code>node_modules</code>, which contains the dependencies' files.
+                        If there are any issues with the installation of dependencies, see the FAQs for assistance.1
+                    </p>
+                    <p>
+                        To start the server, run the command <code>npm run dev</code>.
+                        This will start the server on <code>localhost:8000</code> and run it in the background.
+                    </p>
+                <h4>Client</h4>
+                    <p>
+                        The client, located in the <code>/client</code> directory, is a Node.js application built with <a href="https://www.npmjs.com/package/react">React.js</a>
+                    </p>
+                    <p>
+                        Similarly to the server, you will need to run <code>npm install</code> in the <code>/server</code> directory.
+                        This will install the dependencies specific to the client in its respective <code>node_modules</code> folder.
+                    </p>
+                    <p>
+                        To start the client, run the command <code>npm start</code> in the <code>/client</code> directory.
+                        This will start the client on <code>localhost:3000</code> and open it in your default browser.
+                    </p>
+            <h3>Remote Deployment</h3>
+                <h4>Docker</h4>
+                    <p>
+                        Unfortunately, we were not able to complete the process of setting up this project using docker.
+                        What follows is a discussion of what we have implemented, the expected behavior, and how a docker works.
+                        A docker is an efficient way of containerizing a project. This directory contains a file called <code>docker_compose.yml</code>, which could be used to create three containers: client, server, and mongo-db.
+                        Both client and server directories contain a file called <code>Dockerfile</code>, which define the creation of their respective containers.
+                        Each container encompasses a different part of the container. In the <code>docker_compose.yml</code> file, a number of different parameters are specified for each container:
+                    </p>
+                    <ol>
+                        <li><code>container_name</code>: the name of the container being built</li>
+                        <li><code>build</code>: how to construct the container</li>
+                        <li><code>restart</code>: when frequently the container should be built</li>
+                        <li><code>environment</code>: environment variables</li>
+                        <li><code>ports</code>: port mappings from intrenal to external. A port mapping will generally take the form <code>0.0.0.0:3000:8000</code>, where the left side contains the server IP address and port and the right side contains the corresponding port being used in the code</li>
+                        <li><code>networks</code>: any networks to which a container belongs. This is necessary to allow communication between different containers. </li>
+                        <li><code>depends_on</code>: what order the containers should be constructed in</li>
+                        <li><code>image</code>: the docker image used to build the container</li>
+                        <li><code>volumes</code>: where data should be saved for persistence</li>
+                    </ol>
+                    <p>
+                        These docker files are designed specifically to run on a server created for this class.
+                        To run the application using docker, one must run <code>docker compose build</code> from the root directory of the project, and then <code>docker compose up -d</code> to begin running the project.
+                        At this point, the app can be accessed from any browser at <a href="http://cs495-spring2024-13.ua.edu">http://cs495-spring2024-13.ua.edu</a> or  <a href="http://cs495-spring2024-13.ua.edu:80">http://cs495-spring2024-13.ua.edu:80</a>.
+                        To view currently running containers, run <code>docker ps</code>. To stop the containers from running, run <code>docker compose down</code>.
+                        <br><br>
+                        We believe that the reason why the dockerfiles in this project do not function properly relates to our decision to use React for the frontend.
+                        Our server does not receive any post requests from the frontend. We have been unable to determine a solution to this problem.
+                    </p>
+
+        <!-- KAITLYN SECTION -->
+
+        <h2>How to use each completed feature</h2>
+            <h3>Accounts Functionality</h3>
+                <h4>Create Account</h4>
+                    <ul>Description: This feature allows users to create a new account with their personal information.</ul>
+                    <ul>How to Use: Users can access the account creation page through the "Sign Up" link on the login page of the website. They need to fill out the required fields such as name, email, and password, and then submit the form to create their account.</ul>
+                    <ul>Once the user makes their account, they are taken back to the login page to login to their newly created account.</ul>
+                    <ul>Links to Other Functions: This function interacts with the security features for data encryption, password hashing, and input sanitization to ensure secure account creation and updates.</ul> 
+                <h4>Profile and Edit Profile</h4>
+                        <ul>Description: This feature allows users to view their profile, which displays their name, roles, biography, contact information, profile picture and gallery.</ul>
+                        <ul>How to Use: After a user logs in to their account, they are taken to their profile page. To edit the profile, click on the “Edit Profile” button which allows users to edit all the fields on their profile except for their profile picture and gallery (will be implemented in the future). The “Cancel” button on the editing form will make the form disappear.</ul>
+                        <ul>Links to Other Functions: Data on the profile page is populated from the account creation page. Any edits made on the profile page update the corresponding data in the database. Upon saving changes, the profile page fetches and displays the updated information.</ul>
+                <h4>Sign In / Sign Out</h4>  
+                    <ol>Sign in
+                        <ul>Allows Users to sign in to their accounts.</ul>
+                        <ul>How to use: Users enter their email and password on the sign in page and click the "Sign in" button to access their account.</ul>
+                        <ul>If a user attempts to sign in with invalid information 5 times, they will be blocked from signing in for 10 minutes.</ul>
+                    </ol>
+                        
+                    <ol>Sign out
+                        <ul>Allows users to log out of their accounts.</ul>
+                        <ul>How to use: Users can sign out by clicking the "Sign Out" button located on the navigation bar.</ul>
+                    </ol>
+                    <ul>Links to Other Functions: Signing in and out are essential for accessing secured areas of the website and interacting with personalized content. These functions are also linked to the security features for password hashing and session management.</ul>
+            <br>
+                    <h3>Security Functionality</h3>
+                <h4>Data Encryption</h4>
+                    <ul>Encrypts sensitive data to protect it from unauthorized access.</ul>
+                    <ul>How it works: Data encryption is applied to sensitive user information such as passwords, ensuring that even if the data is intercepted, it remains unreadable without the decryption key.</ul>
+                <h4>Password Hashing</h4>
+                    <ul>How it Works: Passwords are hashed using a secure hashing algorithm before being stored in the database. This ensures that even if the database is compromised, plaintext passwords cannot be retrieved.</ul>
+                    <ul>Both data encryption and password hashing are linked to the accounts functionality by ensuring that sensitive user information, such as passwords, is securely stored and managed, enhancing overall account security.</ul>
+                <h4>Input sanitization</h4>
+                    <ul>How it Works: Cleans and validates user input to prevent common security vulnerabilities such as NoSQL injection and protection against malicious HTML input.</ul>
+                    <ul>Linked to various functionalities across the application. This prevents common security vulnerabilities, ensuring that user input data is clean and safe to process. This also indirectly supports features like profile editing.</ul>
+                <h4>Rate Limiting</h4>
+                    <ul>How it Works: Rate limiting tracks user requests and blocks requests that exceed the defined limits.</ul>
+                    <ul>Linked to user authentication and API endpoints, rate limiting prevents abuse and ensures fair usage of system resources, maintaining system stability and preventing potential attacks on authentication mechanisms and backend APIs.</ul>
+                    <ul>How External Resources Are Incorporated: External resources such as security libraries or functions (validator library, bcrypt for password hashing, and rate limiting functions) are integrated into the backend codebase to enhance the security of the application.</ul>
+            <h3>Sidebar Functionality</h3>
+                <h4>Navigate Website</h4>
+                    <ul>Provides navigation links to different pages of the website.</ul>
+                    <ul>How to Use: Users can click on the sidebar links to navigate to specific sections such as hubs, profile, sign out, and email signup.</ul>
+                <h4>Display Hubs</h4>
+                    <ul>Shows a list of hubs or communities within the platform.</ul>
+                    <ul>How to Use: Users can view the list of hubs in the sidebar and click on a hub to access its details. They can also join a hub using a code.</ul>
+                <p>Links to Other Functions: The sidebar functionality is linked to various sections of the website and enhances user navigation and accessibility.</p>
+            <h3>Notifications Functionality</h3>
+                <h4>Email List Signup</h4>
+                    <ul>Allows users to subscribe to email notifications from our app.</ul>
+                    <ul>How to Use: Users can sign up for email notifications by filling out the email signup form on the website.</ul>
+                    <ul>Links to Other Functions: Email list signup integrates with SendGrid to manage and send email notifications to subscribers.</ul>
+            <h3>Hubs Functionality</h3>
+                <h4>Display Members and Hub Info</h4>
+                    <ul>Shows information about hub members and details about each hub.</ul>
+                    <ul>How to Use: Users can navigate to the "Hubs" section and view the list of members and hub information.</ul>
+                <h4>Links to Subpages</h4>
+                    <ul>Provides links to subpages or specific sections within each hub.</ul>
+                    <ul>How to Use: Users can click on the subpage links in a hub to access related content or features.</ul>
+                <h4>Admin Page</h4>
+                    <ul>Enables hub administrators to manage hub settings and members.</ul>
+                    <ul>How to Use: Admins can access the admin page from the hub interface and perform actions like admitting/denying member requests, kicking/banning members, and updating hub information.</ul>
+                <p>Links to Other Functions: The hubs functionality interacts with user accounts, security features, and notifications (e.g., sending notifications to hub members).</p>
+            <h3>Resources / Designer Pages Functionality</h3>
+                <h4>File Uploads/Downloads</h4>
+                    <ul>Allows users to upload and download files/resources.</ul>
+                    <ul>How to Use: Users can upload files to share with others or download resources provided by the platform.</ul>
+                <h4>Scripts</h4>
+                    <ul>Manages script uploads and displays script PDFs for users.</ul>
+                    <ul>How to Use: Users can upload and download script files or view existing script PDFs on the scripts page.</ul>
+                    <ul>Scripts can be edited by drawing/highlighting on the document and can be downloaded with the edits included.</ul>
+                <p>Links to Other Functions: This functionality interacts with file storage systems, user accounts, and notifications [in the future].</p>
+        <h2>How external resources are integrated</h2>
+            <h4>React (Frontend Library)</h4>
+                <ul>Used for building user interfaces.</ul>
+                <ul>Incorporated through component-based architecture for a modular and scalable frontend.</ul>
+            <h4>Axios (HTTP Client for Node.js)</h4>
+                <ul>Used for making HTTP requests to the backend.</ul>
+                <ul>Incorporated into frontend components to fetch and send data from/to the server.</ul>
+            <h4>SendGrid (Email API)</h4>
+                <ul>Integrated for sending marketing emails, notifications, and password reset emails (to be implemented).</ul>
+                <ul>Configured with API keys stored securely in environment variables for email functionality.</ul>
+            <h4>MongoDB (Database)</h4>
+                <ul>Used for storing user profiles, account information, and other application data.</ul>
+                <ul>Integrated into the backend to handle CRUD operations and ensure data persistence and reliability.</ul>
+
+        <!-- LOGAN SECTION -->
+
+        <br></br>
+        <h3>How to make changes</h3>
+            <h4>Fork our github repository</h4>
+                <ol>
+                    <li>Click <a href="https://github.com/Bmfioresi/stage-managers-book">here</a>.</li>
+                    <li>In the top-right corner of the page, click Fork.</li>
+                    <li>Under "Owner," select the dropdown menu and click an owner for the forked repository.</li>
+                    <li>By default, forks are named the same as their upstream repositories, but you can name it whatever you'd like.</li>
+                    <li>Optional:
+                        <ul>in the "Description" field, type a description of your fork.</ul>
+                        <ul>select Copy the DEFAULT branch only.</ul>
+                    </li>
+                    <li>Click Create fork.</li>
+                </ol>
+            <h4>After installing Node.js and npm</h4>
+                <p>
+                    Most of our files are split into two main folders: client and server. Client holds the frontend react.js files and server holds the backend node.js files.
+                    To make changes, you can simply edit any of the files as you see fit, or create entirely new ones.To test your changes, open two terminals. Navigate to the client directory in one, and the server directory in the other.
+                </p>
+                <h5>Client</h5>
+                <p>In the client terminal, run the command `npm start`. This will start the client on `localhost:3000` and open it in your default browser. If you have dependency issues, run `npm install` and it will automatically install all of the dependencies in `packages.json`.</p>
+                <h5>Server</h5>
+                <p>
+                    In the server terminal, run the command `npm run dev`. This will start the server on `localhost:8000` and run it in the background. If you have dependency issues, run `npm install` and it will automatically install all of the dependencies in `packages.json`.
+                    You will need to login to MongoDB Atlas, add your computer's IP Address, and create a .env file with variables MONGODB_USERNAME and MONGODB_PASSWORD to facilitate the communication between the server and the database.
+                </p>
+        <br>
+        <h3>Project backlog</h3>
+            <p>Our project backlog is downloadable <a href="files/TheStageManager-Sprint3_ProjectBacklog.xlsx" download>here</a>.</p>
+        <br>
+        <h3>Bug list</h3>
+            <h4>Major bugs include:</h4>
+                <ul>When you log in, the sidebar does not automatically refresh, which forces the user to refresh the page to join a hub and to view the hubs they are a member of.</ul>
+                <ul>The script viewer only properly displays on Edge, and displays a downloadable file on other browsers.</ul>
+                <ul>Attempting to join a hub when not logged in will add '-1' to the member join list and cause the admin page to be unloadable</ul>
+                <ul>In test cases, 'createTestDB' and 'destroyTestDB' does not properly wait for a response to run the test cases. Currently, there is a hardcoded delay of 1 second after loading or deleting the database.</ul>
+
+            <h4>Other potential issues:</h4>
+                <ul>You will want to refactor to a local mongodb database rather than relying on Atlas.</ul>
+                <ul>Styling and CSS will need to be refactored to be responsive using Bootstrap.</ul>
+                <ul>HIDs and UIDs must be integers; some of our code uses 'Number()' in certain locations because we were originally using strings. May cause unexpected results.</ul>
+
+        <!-- LIAM SECTION -->
+
+        <br>
+        <h2>Automated Testing</h2>
+            <p>We have created a series of automated test cases which can be run directly from the website. This file can be seen at <b>/client/src/pages/unit-tests.js</b>. Currently, there are <b>7</b> automated test cases, testing a variety of different portions of the project.</p>
+            <p>To run the test cases, you should start the app and naigate to <b>localhost:3000/unit-tests</b>. Unfortunately, we currently do not have a way for these unit tests to run if the app itself cannot run. There are two ways to run these test cases:</p>
+            <ol>
+                <li>Test One: click on the "Test" button next ton one test case to run only this test case</li>
+                <li>Test All: click on the "Test All" button at the top of the screen to run all test cases. This will run all test cases simultaneously</li>
+            </ol>
+            <p>When you begin to run a test case, you should see a loading icon next to the test case. When the test case has completed, this loading icon will be replaced by either a checkmark (indicating the test passed) or an x (indicating that the test did not pass). If a test did not pass, more details will be printed to the console.</p>
+            <p>Test cases access a database seperate from our production database. Thus, you can run each test case as many times as you'd like with no impact on production data. The script which is used to load the test database and which contains the specifications for the test database can be found at <b>/server/test-db-functions.js</b></p>
+
+        <h2>Style Guide</h2>
+            <p>When modifying this code, please adhere to the following style guides:</p>
+            <ol>
+                <li>All frontend code should be stored the client subdirectory. All backend code should be stored in the server directory. Each contains their own <b>package.json</b> and <b>package-lock.json</b> files. Any packages which need to be installed must be listed in these files. A package should only be added to both <b>package.json</b> files only if it is required for both frontend and backend code.</li>
+                <li>Server environment variables are located in <b>server/.env</b>. In addition to parameters and credentials, paths should be specified as environment variables for cleaner code. There may be locations throughout this code where base URLs are hardcoded; this is not ideal behavior.</li>
+                <li>All console.log() statements created during testing should be removed from code or commented out before being pushed into the main branch of the project.</li>
+                <li>lowerCamelCase should be used for variable names throughout our code.</li>
+                <li>Filenames should consist of one or more words, written entirely in lowercase, and seperated by dashes. They should follow the form <b>server.js</b> or <b>mongo-helpers.js</b>.</li>
+                <li>When a code block requires braces, the opening brace should appear in line with the if statement, function declaration, or other start of the block. The end brace should appear at the same indentation level as the start of the block.</li>
+                <li>A seperate file should be created for helper functions if any of the following are true:</li> 
+                    <ol>
+                        <li>They are thematically different from the context in which they are called.</li>
+                        <li>The same function is needed in two or more files.</li>
+                        <li>The set of helper functions includes four or more functions.</li>
+                        <li>The set of helper functions is longer than 50 lines of code.</li>
+                    </ol>
+                <li>Error messages should reveal exactly what happened, unless this reveals information which poses a security concern.</li>
+                <li>Unless otherwise specified, follow standard JavaScript naming conventions. These can be seen <a href="https://github.com/standard/standard">here</a>.</a></li>
+            </ol>
+
+        <!-- HANNAH SECTION -->
+
+        <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+	            <div class="faq-question">How do I create an account?</div>
+                <div class="faq-answer">
+                	<p>To create an account, simply click on the "Don't have an account? Sign-up" link on the sign-in page below the "Sign-in" button. This will redirect you to the account creation page.
+                    <br><br> You will need to provide your full name, email address, and a password. Ensure that the password meets our specified criteria and is entered twice for confirmation.
+                    <br><br> Your password must meet certain criteria to ensure security. It includes a minimum of eight characters in length, a mix of uppercase and lowercase letters, and at least one number and special characters. This criteria is outlined on the account creation page.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+	            <div class="faq-question">How do I create a new hub for my production?</div>
+                <div class="faq-answer">
+                	<p>Once logged in, navigate to the side panel and select “Create New Hub.” Enter the required information about the production, such as name and description. After creating the hub, you can invite cast and crew members by sending the access code to their emails, allowing them to join and participate in the fun!</p>
+                </div>
+            </div>
+   
+            <div class="faq-item">
+	            <div class="faq-question">Are there any restrictions on uploading scripts and images to a hub?</div>
+                <div class="faq-answer">
+                	<p>Yes, files must be in supported formats (e.g., PDF for scripts, JPEG or PNG for images) and should not exceed the size limit of 25MB per file. Make sure your files are correctly formatted and named before uploading. If you encounter errors during upload, check your internet connection, file format, and file size and try again.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+	            <div class="faq-question">How can I update my user profile?</div>
+                <div class="faq-answer">
+                	<p>After logging in, you can update your profile information by navigating to the page. Scroll to the bottom and click the “Edit Profile” button. You can change details such as your contact information, bio, and profile picture. Make sure to save changes before exiting the page.</p>
+                </div>
+            </div>
+    </div>
+
+    <script>
+        var faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(function(question) {
+          question.addEventListener('click', function() {
+            this.classList.toggle('active');
+          });
+        });
+    </script>
+
 </body>
 </html>
