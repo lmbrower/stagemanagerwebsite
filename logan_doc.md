@@ -33,6 +33,8 @@ Our project backlog is located [here](https://docs.npmjs.com/downloading-and-ins
 Major bugs include:
 * When you log in, the sidebar does not automatically refresh, which forces the user to refresh the page to join a hub and to view the hubs they are a member of.
 * The script viewer only properly displays on Edge, and displays a downloadable file on other browsers.
+* Attempting to join a hub when not logged in will add '-1' to the member join list and cause the admin page to be unloadable
+* In test cases, 'createTestDB' and 'destroyTestDB' does not properly wait for a response to run the test cases. Currently, there is a hardcoded delay of 1 second after loading or deleting the database.
 
 #### Other potential issues
 You will want to refactor to a local mongodb database rather than relying on Atlas.
