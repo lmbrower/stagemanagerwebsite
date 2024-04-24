@@ -136,7 +136,7 @@
                     <li><a href="#view_a_hub">View a Hub</a></li>
                     <li><a href="#join_a_hub">Join a Hub</a></li>
                     <li><a href="#access_hub_files">Join a Hub</a></li>
-                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#faq_user">FAQs for User</a></li>
                 </ol>
             </li>
             <li><a href="#for_developers">For Developers</a>
@@ -149,6 +149,7 @@
                     <li><a href="#bug_list">Bug List</a></li>
                     <li><a href="#automated_testing">Automated Testing</a></li>
                     <li><a href="#style_guide">Style Guide</a></li>
+                    <li><a href="#faq_dev">FAQs for Developers</a></li>
                 </ol>
             </li>
             <li><a href="#credits">Credits</a></li>
@@ -218,44 +219,60 @@
 
             </ol>
 
-    <!-- HANNAH SECTION -->
-
-        <h2 id="faq">Frequently Asked Questions</h2>
-
-            <div class="faq-item">
-	            <div class="faq-question">How do I create an account?</div>
+        <h2 id="faq_user">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+	            <div class="faq-question">How can I start using The Stage Manager's Book?</div>
                 <div class="faq-answer">
-                	<p>To create an account, simply click on the "Don't have an account? Sign-up" link on the sign-in page below the "Sign-in" button. This will redirect you to the account creation page.
-                    <br><br> You will need to provide your full name, email address, and a password. Ensure that the password meets our specified criteria and is entered twice for confirmation.
-                    <br><br> Your password must meet certain criteria to ensure security. It includes a minimum of eight characters in length, a mix of uppercase and lowercase letters, and at least one number and special characters. This criteria is outlined on the account creation page.</p>
+                	<p>You can start by signing up for an account on our website. Once registered, you can create your first 
+                        production hub and begin adding details such as cast members, announcements, and script notes.</p>
                 </div>
             </div>
 
             <div class="faq-item">
-	            <div class="faq-question">How do I create a new hub for my production?</div>
+	            <div class="faq-question">What informaiton do I need to provide to create an account?</div>
                 <div class="faq-answer">
-                	<p>Once logged in, navigate to the side panel and select “Create New Hub.” Enter the required information about the production, such as name and description. After creating the hub, you can invite cast and crew members by sending the access code to their emails, allowing them to join and participate in the fun!</p>
+                	<p>You will need to provide your full name, email address, and a password. Ensure that the password meets 
+                        our specified criteria and is entered twice for confirmation.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+	            <div class="faq-question">What are the password criteria?</div>
+                <div class="faq-answer">
+                	<p>Your password must meet certain criteria to ensure security. It includes a minimum length of eight, a mix of 
+                        uppercase and lowercase letters, numbers, and special characters. Specific criteria will be outlined on the 
+                        account creation page. In addition to this, your password must not contain your email address or parts of your 
+                        first name.</p>
                 </div>
             </div>
    
             <div class="faq-item">
-	            <div class="faq-question">Are there any restrictions on uploading scripts and images to a hub?</div>
+	            <div class="faq-question">Are there any restrictions on uploading files to a hub?</div>
                 <div class="faq-answer">
-                	<p>Yes, files must be in supported formats (e.g., PDF for scripts, JPEG or PNG for images) and should not exceed the size limit of 25MB per file. Make sure your files are correctly formatted and named before uploading. If you encounter errors during upload, check your internet connection, file format, and file size and try again.</p>
+                	<p>Yes, files must be in supported formats (e.g., PDF for scripts, JPEG or PNG for images, DWG for CAD drawings) and
+                        should not exceed the size limit of 25MB per file. Make sure your files are correctly formatted and named before 
+                        uploading. If you encounter errors during upload, check your internet connection, file format, and file size and 
+                        try again. Additoinally, there are certain file types that are only allowed on particular sites. For example, the 
+                        designer page allows for .dwg files, while the resources page does not accept this format.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
-	            <div class="faq-question">How can I update my user profile?</div>
-                <div class="faq-answer">
-                	<p>After logging in, you can update your profile information by navigating to the page. Scroll to the bottom and click the “Edit Profile” button. You can change details such as your contact information, bio, and profile picture. Make sure to save changes before exiting the page.</p>
-                </div>
-            </div>
-            <br>
+        <h4>Other potential issues:</h4>
+            <ul>
+                <li><b>Dependence on Internet Connection:</b> Services like GridFS and SendGrid require a reliable internet connection. Users in areas with poor connectivity might experience disruptions or slower performance.</li>
+                <li><b>Service Downtime:</b> External services can have outages or maintenance periods that affect their availability. Even if your application is running smoothly, any downtime from services like MongoDB Atlas or SendGrid can hinder user experience.</li>
+                <li><b>Data Privacy Concerns:</b> Users may be wary of how their data is handled by third-party services, especially when it concerns sensitive information such as personal details, financial records, and production-specific data. The apprehension is greater if the service is one they have never previously encountered.</li>
+                <li><b>Complexity and Usability:</b> Features dependent on third-party services might have limitations or behave differently than expected, potentially confusing users. For example, real-time updates might be slower or unavailable due to API rate limits, leading to a less interactive experience.</li>
+                <li><b>Delayed Updates:</b> If a third-party service experiences a problem or requires an update, it might delay the propagation of changes or fixes in your app, affecting user experience.</li>
+                <li><b>Page Refresh Requirement:</b> Users need to refresh pages to see updates in their sidebar status after logout, hub interactions, or profile changes. This can lead to confusion and a poor user experience, as modern web applications typically provide dynamic updates without the need for manual page reloads.</li>
+                <li><b>Unencrypted Traffic:</b> If the application doesn't use HTTPS, all traffic between the client and the server is unencrypted. This exposes users to risks such as data theft or man-in-the-middle attacks, especially sensitive in a setting where personal and production-related data are involved.</li>
+                <li><b>Lack of Forgot Password Feature:</b> Without a forgot password feature, users who forget their passwords have no way to recover their account on their own. This can result in frustration and decreased user satisfaction, as they may have to wait for manual intervention from support to regain access.</li>
+            </ul>
+        
+        <br>
 
         <h1 id="for_developers">For Developers:</h1>
-
-        <!-- BEN SECTION -->
 
         <h2 id="how_to_install">How to Install</h2>
             <h3>Software Needed</h3>
@@ -297,7 +314,7 @@
                         This command installs the dependencies needed for the server to run properly.
                         The dependencies are detailed in the <code>package.json</code> file.
                         This command will generate a folder called <code>node_modules</code>, which contains the dependencies' files.
-                        If there are any issues with the installation of dependencies, see the FAQs for assistance.1
+                        If there are any issues with the installation of dependencies, see the FAQs for assistance.
                     </p>
                     <p>
                         To start the server, run the command <code>npm run dev</code>.
@@ -344,8 +361,6 @@
                         We believe that the reason why the dockerfiles in this project do not function properly relates to our decision to use React for the frontend.
                         Our server does not receive any post requests from the frontend. We have been unable to determine a solution to this problem.
                     </p>
-
-        <!-- KAITLYN SECTION -->
 
         <h2 id="how_each_feature_works">How each feature works</h2>
             <h3>Accounts Functionality</h3>
@@ -433,8 +448,6 @@
                 <ul>Used for storing user profiles, account information, and other application data.</ul>
                 <ul>Integrated into the backend to handle CRUD operations and ensure data persistence and reliability.</ul>
 
-        <!-- LOGAN SECTION -->
-
         <br></br>
         <h2 id="how_to_make_changes">How to make changes</h2>
             <h4>Fork our github repository</h4>
@@ -468,13 +481,6 @@
                 <ul>Attempting to join a hub when not logged in will add '-1' to the member join list and cause the admin page to be unloadable</ul>
                 <ul>In test cases, 'createTestDB' and 'destroyTestDB' does not properly wait for a response to run the test cases. Currently, there is a hardcoded delay of 1 second after loading or deleting the database.</ul>
 
-            <h4>Other potential issues:</h4>
-                <ul>You will want to refactor to a local mongodb database rather than relying on Atlas.</ul>
-                <ul>Styling and CSS will need to be refactored to be responsive using Bootstrap.</ul>
-                <ul>HIDs and UIDs must be integers; some of our code uses 'Number()' in certain locations because we were originally using strings. May cause unexpected results.</ul>
-
-        <!-- LIAM SECTION -->
-
         <br>
         <h2 id="automated_testing">Automated Testing</h2>
             <p>We have created a series of automated test cases which can be run directly from the website. This file can be seen at <b>/client/src/pages/unit-tests.js</b>. Currently, there are <b>7</b> automated test cases, testing a variety of different portions of the project.</p>
@@ -506,8 +512,70 @@
                 <li>Unless otherwise specified, follow standard JavaScript naming conventions. These can be seen <a href="https://github.com/standard/standard">here</a>.</a></li>
             </ol>
 
+        <h2 id="faq_dev">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+	            <div class="faq-question">What should I do if I encounter dependency conflicty when installing packages?</div>
+                <div class="faq-answer">
+                	<p>If you face dependency conflicts during package installation, use the 
+                        <code>npm install --save --legacy-peer-deps</code> command. This command option tells npm to ignore peer dependency
+                        conflicts and revert to the legacy algorithm used in npm versions four through six. This is particularly useful 
+                        when mitigating legacy projects or when multiple dependencies require different versions of the same package. After
+                        installation, check if your application runs as expected. The peer dependencies are likely compatible if the 
+                        project runs without issues, even though they reported conflicts during installation. </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+	            <div class="faq-question">How do I troubleshoot connection issues with MongoDB Atlas?</div>
+                <div class="faq-answer">
+                	<p>Verify that your MongoDB Atlas cluster is accessible from your IP address. Check the network access settings in the 
+                        MongoDB Atlas dashboard and ensure your current IP is whitelisted. Double-check your database URI string in your 
+                        application configuration to ensure it matches what Atlas provides. Ensure that your database user has the correct 
+                        permissions. Also, ensure your .env file has the appropriate login credentials saved to the MONGODB_USERNAME and 
+                        MONGODB_PASSWORD variables.</p>
+                </div>
+            </div>
+   
+            <div class="faq-item">
+	            <div class="faq-question">What are the best practices for updating my appliccation and its dependencies?</div>
+                <div class="faq-answer">
+                	<p>Regularly update your dependencies to benefit from the latest features, performance improvements, and security 
+                        patches. Use dependency monitoring tools like Dependabot, which integrates with GitHub to propose updates to your 
+                        dependencies automatically. Use version control branches to test updates in a controlled environment before 
+                        merging them into your main codebase. Make database changes backward compatible where possible, and test 
+                        thoroughly before deploying.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+	            <div class="faq-question">How is data handled in the backend of The Stage Manager's Book?</div>
+                <div class="faq-answer">
+                	<p>Data in The Stage Manager's Book is handled using MongoDB, a NoSQL database, allowing for flexible data schemas and 
+                        efficient data retrieval and manipulation. Node.js is used to handle server-side logic and API responses.</p>
+                </div>
+            </div>
+            <br>
+
+            <h4>Other potential issues:</h4>
+                <ul>You will want to refactor to a local mongodb database rather than relying on Atlas.</ul>
+                <ul>Styling and CSS will need to be refactored to be responsive using Bootstrap.</ul>
+                <ul>HIDs and UIDs must be integers; some of our code uses 'Number()' in certain locations because we were originally using strings. May cause unexpected results.</ul>
+                <ul><b>Vendor Lock-In:</b> Using services like MongoDB Atlas may limit the ability to switch providers or migrate to different solutions without significant rework or data migration challenges.</ul>
+	            <ul><b>API Limitations:</b> External APIs might not cover all the cases the application needs, or they might change their functionality, which can limit how we develop features or force us to adapt the application unexpectedly.</ul>
+	            <ul><b>Cost Scalability:</b> As the user base grows, the cost of using external services can increase significantly. This scaling in costs might not always align with the sponsor's budget or pricing structure.</ul>
+	            <ul><b>Security Risks:</b> Integrating third-party services increases the complexity of securing your application. There is a risk of data breaches or security flaws from these providers impacting your users.</ul>
+                <ul><b>Google Sign-In Integration Issues:</b> Integrating Google Sign-In into The Stage Manager's Book presented unexpected challenges, particularly with Cross-Origin Opener Policy (COOP) errors. These policy errors made it difficult to maintain the security and functionality of the user authentication process. Despite various attempts to adjust settings and configurations, these COOP errors persisted, ultimately leading us to abandon this approach.</ul>
+	            <ul><b>Hubs Access Code Generation is Easy to Guess:</b> The mechanism currently in place for generating access codes for hubs in our application simply increments the generated code by one. This approach quickly proved to be insecure as it is easily predictable, making it trivial for unauthorized users to guess subsequent codes.</ul>
+	            <ul><b>Nodemailer Issues:</b> We chose to use nodemailer to manage the delivery of forgot password links via email, which is crucial for account recovery. However, we frequently encountered interruptions caused by Google, which repeatedly blocked our email sending attempts. This often happens due to Google's strict security measures, which misinterpreted our send-outs of forgot password emails as potentially suspicious activity. The constant blocks not only disrupted our ability to provide timely assistance to users needing to reset their passwords but also added significant complications in maintaining smooth and reliable user support process.</ul>
+	            <ul><b>Dockerizing Project:</b>  The process of Dockerizing our application introduced several complexities, particularly in the realm of server and client container communication. When we containerized both the server and the client parts of the app, ensuring proper network configurations and service discovery became crucial. We encountered significant challenges when the client container was unable to establish a consistent connection with the server container. This miscommunication impeded our ability to effectively test and deploy the application, as ensuring that the client and server could connect over the correct ports and networks became a persistent hurdle, thus impeding our ability to host our project.</ul>
+	            <ul><b>Traffic Not Encrypted:</b> Our current application traffic is not encrypted, posing significant security risks. Without HTTPS, all data transmitted between our servers and client devices is sent in plain text. This makes sensitive information, such as login credentials, personal details, and production-specific data, vulnerable to interception by malicious actors. It is crucial for us to implement HTTPS to encrypt communications, ensuring that all data passed remains confidential and integral. This may aid in allowing us to communicate with Google APIs in the future.</ul>
+
+
+
+
             <h4 id="credits">Credits:</h4>
-                <h6>Hannah Brousseau: FAQs</h6>
+                <h6>Hannah Brousseau: FAQs, Gotchas, Possible issues with external resources, Other potnetial issues</h6>
                 <h6>Logan Brower: Documentation structure, How to make changes, Backlog, Bug list, For User section</h6>
                 <h6>Kaitlyn Bryant: How each feature works, External Resources</h6>
                 <h6>Ben Fioresi: How to install</h6>
